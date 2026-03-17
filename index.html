@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Учим немецкие слова</title>
+    <style>
+        body {
+            background-color: #fefbd8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 { color: #2a7a2a; }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Учим немецкие слова</h1>
+<p id="word">Слово появится здесь</p>
+
+<button onclick="checkAnswer('der')">Der</button>
+<button onclick="checkAnswer('die')">Die</button>
+<button onclick="checkAnswer('das')">Das</button>
+
+<p id="result"></p>
+
+<script>
+let words = [
+    {word: "Apfel", article: "der"},
+    {word: "Banane", article: "die"},
+    {word: "Haus", article: "das"}
+];
+
+let currentWord = {};
+
+function nextWord() {
+    currentWord = words[Math.floor(Math.random() * words.length)];
+    document.getElementById('word').textContent = currentWord.word;
+    document.getElementById('result').textContent = "";
+}
+
+// Проверка ответа
+function checkAnswer(answer) {
+    if(answer === currentWord.article) {
+        document.getElementById('result').textContent = "✅ Правильно!";
+    } else {
+        document.getElementById('result').textContent = "❌ Неправильно!";
+    }
+    // Показать новое слово через секунду
+    setTimeout(nextWord, 1000);
+}
+
+// Показываем первое слово при загрузке
+nextWord();
+</script>
+
+</body>
+</html>
